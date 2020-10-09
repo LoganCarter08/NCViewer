@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+	<title>NC Viewer</title> 
+</head> 
+<style> 
+	.scrollabletextbox {
+    height:100px;
+    width:200px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    overflow:scroll;
+    }
+</style>
+
+
+<script src="Parsers/AmadaLaserParser.js"></script>
+<script src="BackBone JS/Arc.js"></script>
+<script src="BackBone JS/Line.js"></script>
+<script src="BackBone JS/Rapid.js"></script>
+<script src="BackBone JS/GlobalSettings.js"></script>
+<script src="BackBone JS/Origin.js"></script>
+
+
+<body> 
+	<input type="file" name="inputfile" id="inputfile"> 
+	<br> 
+	
+	<textarea onchange="runParser()" id="myTextarea" rows="50" cols="50" onkeyup="getLineNumberAndColumnIndex(this);" onmouseup="this.onkeyup();"></textarea>
+   
+	<canvas id="myCanvas" width="1600" height="900" style="border:1px solid #d3d3d3;">
+		Your browser does not support the HTML5 canvas tag.</canvas>
+   
+	<pre id="output"></pre> 
+      
+	<script type="text/javascript"> 
+		var listOfCommands = [];
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		ctx.translate(50, myCanvas.height - 50);
+		ctx.scale(1, -1);
+		var orig = new origin();
+		
+		
+		document.getElementById('inputfile').addEventListener('change', function() { 
+             
+			var fr = new FileReader(); 
+			fr.onload = function(){ 
+				//document.getElementById('inputbox').value = fr.result; 
+				document.getElementById("myTextarea").value = fr.result;
+				runParser();
+				//console.log(fr.result);
+			} 
+			fr.readAsText(this.files[0]); 
+			
+		}) 
+		
+		// used to draw code in live time based on cursor position in text box 
+		function getLineNumberAndColumnIndex(textarea){
+			var textLines = textarea.value.substr(0, textarea.selectionStart).split("\n");
+			var currentLineNumber = textLines.length;
+			//var currentColumnIndex = textLines[textLines.length-1].length;
+			//console.log("Current Line Number " + currentLineNumber);
+			ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+			
+			var i = 0;
+			while (i < listOfCommands.length && listOfCommands[i].lineNum <= currentLineNumber) {
+				listOfCommands[i].action(i);
+				i++;
+			}
+		}
+		
+		// is called if the code changes or is added. This will parse the file using the machine specific 
+		// parser and turn code into entities to then draw on the screen. Should contain enough flexibility 
+		// to allow each parser to be powerful and detailed. 
+		function runParser() {
+			ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+			var NCFile = document.getElementById("myTextarea").value.split("\n");
+			listOfCommands = [];
+			
+			listOfCommands.push(orig);
+			for (var i = 0; i < NCFile.length; i++) {
+				AmadaLaserParser(i, NCFile[i]);
+			}
+			
+			for (var i = 0; i < listOfCommands.length; i++) {
+				//console.log(listOfCommands[i].className);
+				listOfCommands[i].action(i);
+			}
+			
+		}
+	</script> 
+</body> 
+  
+</html> 
