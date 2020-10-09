@@ -9,6 +9,8 @@ function AmadaLaserParser(j, input) {
 		currentColor = "red";
 	} else if (input.includes("E3")) {
 		currentColor = "green";
+	} else if (input.includes("E2")) {
+		currentColor = "cyan";
 	} else if (input.includes("E10")) {
 		currentColor = "blue";
 	} else if (input.includes("G01")) {

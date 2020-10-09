@@ -3,10 +3,10 @@ class arc {
 		this.className = "arc";
 		this.color = colors;
 		this.lineNum = line;
-		if (direction = 1) {
-			this.dir = true; // 0 for CW, 1 for CCW
+		if (direction == 1) {
+			this.dir = false;//true; // 0 for CW, 1 for CCW
 		} else {
-			this.dir = false;
+			this.dir = true;//false;
 		}
 		var startX = 0;
 		var startY = 0;

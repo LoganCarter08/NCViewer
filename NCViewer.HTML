@@ -27,18 +27,21 @@
 	<input type="file" name="inputfile" id="inputfile"> 
 	<br> 
 	
-	<textarea onchange="runParser()" id="myTextarea" rows="50" cols="50" onkeyup="getLineNumberAndColumnIndex(this);" onmouseup="this.onkeyup();"></textarea>
+	<textarea onchange="runParser()" id="myTextarea" rows="50" cols="40" onkeyup="getLineNumberAndColumnIndex(this);" onmouseup="this.onkeyup();"></textarea>
    
-	<canvas id="myCanvas" width="1600" height="900" style="border:1px solid #d3d3d3;">
+	<canvas id="myCanvas" width="1400" height="900" style="border:1px solid #d3d3d3;">
 		Your browser does not support the HTML5 canvas tag.</canvas>
    
 	<pre id="output"></pre> 
       
 	<script type="text/javascript"> 
+		// these files go here: \\sigmatek.net\Media\Web\info.sigmatek.net\NCViewer
+		// accessed by: http://info.sigmatek.net/downloads/NCViewer/NCViewer.html
+	
 		var listOfCommands = [];
 		var c = document.getElementById("myCanvas");
 		var ctx = c.getContext("2d");
-		ctx.translate(50, myCanvas.height - 50);
+		ctx.translate(0, myCanvas.height);
 		ctx.scale(1, -1);
 		var orig = new origin();
 		
