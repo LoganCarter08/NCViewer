@@ -15,12 +15,15 @@
 </style>
 
 
-<script src="Parsers/AmadaLaserParser.js"></script>
+<script src="Parsers/AmadaParser.js"></script>
 <script src="BackBone JS/Arc.js"></script>
 <script src="BackBone JS/Line.js"></script>
 <script src="BackBone JS/Rapid.js"></script>
 <script src="BackBone JS/GlobalSettings.js"></script>
 <script src="BackBone JS/Origin.js"></script>
+<script src="BackBone JS/Punch Tools/PunchToolCreator.js"></script>
+<script src="BackBone JS/Punch Tools/PunchRectangle.js"></script>
+<script src="BackBone JS/Punch Tools/PunchCircle.js"></script>
 
 
 <body> 
@@ -38,10 +41,12 @@
 		// these files go here: \\sigmatek.net\Media\Web\info.sigmatek.net\NCViewer
 		// accessed by: http://info.sigmatek.net/downloads/NCViewer/NCViewer.html
 	
+		var lastToolUsed;
 		var listOfCommands = [];
 		var c = document.getElementById("myCanvas");
 		var ctx = c.getContext("2d");
-		ctx.translate(0, myCanvas.height);
+		//ctx.translate(0, myCanvas.height);
+		ctx.translate(50, myCanvas.height - 50);
 		ctx.scale(1, -1);
 		var orig = new origin();
 		
@@ -84,7 +89,7 @@
 			
 			listOfCommands.push(orig);
 			for (var i = 0; i < NCFile.length; i++) {
-				AmadaLaserParser(i, NCFile[i]);
+				AmadaParser(i, NCFile[i]);
 			}
 			
 			for (var i = 0; i < listOfCommands.length; i++) {

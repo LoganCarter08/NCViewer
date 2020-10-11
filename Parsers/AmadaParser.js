@@ -1,10 +1,10 @@
-function AmadaLaserParser(j, input) {
+function AmadaParser(j, input) {
 	origin = 0;
 	arcCenter = 1;
 	
 	//console.log(NCFile[1]);
-	var myCommand;
-	// set up color changes for quality. 
+	var myCommand; // command we will be adding to the list of movements
+	
 	if (input.includes("E4")) {
 		currentColor = "red";
 	} else if (input.includes("E3")) {
@@ -35,6 +35,15 @@ function AmadaLaserParser(j, input) {
 				myCommand = new arc(j, currentColor, 1, parseFloat(tempStr[1]), parseFloat(tempStr[2]), parseFloat(tempStr[3]), parseFloat(tempStr[4]));
 			}
 		}
+	} else if (input.includes("X") && input.includes("Y")) {
+		var createTool = false;
+		var toolNum = -1;
+		if (input.includes("T")) { // punch tool active 
+			createTool = true;
+			toolNum = parseFloat(input.split("T")[1]);
+		}
+		var tempStr = input.split(/X|Y|T/);
+		myCommand = createPunchTool(createTool, j, toolNum, "brown", tempStr[1], tempStr[2]);
 	}
 	
 	if (typeof(myCommand) != "undefined") {
