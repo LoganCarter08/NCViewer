@@ -29,6 +29,7 @@ class punchRect {
 		ctx.closePath();
 		
 		ctx.fillStyle = this.color;
+		ctx.rotate(punchToolAngle * Math.PI / 180);
 		ctx.fillRect(this.endX * scale, this.endY * scale, this.length * scale, this.width * scale);
 		//console.log(this.endX + "   " + this.endY);
 	}

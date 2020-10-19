@@ -42,8 +42,12 @@ function AmadaParser(j, input) {
 			createTool = true;
 			toolNum = parseFloat(input.split("T")[1]);
 		}
+		
+		if (input.includes("C") {
+			punchToolAngle = parseFloat(input.split("C")[1]);
+		}
 		var tempStr = input.split(/X|Y|T/);
-		myCommand = createPunchTool(createTool, j, toolNum, "brown", tempStr[1], tempStr[2]);
+		myCommand = createPunchTool(createTool, j, toolNum, "brown", tempStr[1], tempStr[2], punchToolAngle);
 	}
 	
 	if (typeof(myCommand) != "undefined") {
