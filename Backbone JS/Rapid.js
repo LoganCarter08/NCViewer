@@ -8,6 +8,14 @@ class rapid {
 	}
 	
 	action(j) {
+		if (isNaN(this.endX)){
+			this.endX = listOfCommands[j - 1].endX;
+		}
+		
+		if (isNaN(this.endY)){
+			this.endY = listOfCommands[j - 1].endY;
+		}
+		
 		//var color = ctx.strokeStyle;
 		ctx.beginPath();
 		ctx.strokeStyle = "black";

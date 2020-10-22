@@ -33,6 +33,30 @@ class arc {
 	}
 	
 	action(j) {
+		if (isNaN(this.endX)){
+			this.endX = listOfCommands[j - 1].endX;
+		}
+		
+		if (isNaN(this.endY)){
+			this.endY = listOfCommands[j - 1].endY;
+		}
+		
+		if (isNaN(this.centerX)) {
+			var countBack = j;
+			while (listOfCommands[countBack].className != "arc") {
+				countBack--;
+			}
+			this.centerX = listOfCommands[countBack].centerX;
+		}
+		
+		if (isNaN(this.centerY)) {
+			var countBack = j;
+			while (listOfCommands[countBack].className != "arc") {
+				countBack--;
+			}
+			this.centerY = listOfCommands[countBack].centerY;
+		}
+		
 		var newCenterX;
 		var newCenterY;
 		if (arcCenter == 1) {
@@ -40,6 +64,7 @@ class arc {
 			this.newCenterX = listOfCommands[j - 1].endX + this.centerX;
 			this.newCenterY = listOfCommands[j - 1].endY + this.centerY;
 		}
+		
 		var endAngle = this.getAngle(this.endX, this.endY, this.newCenterX, this.newCenterY); // this is the end angle
 		var startAngle = this.getAngle(listOfCommands[j - 1].endX,  listOfCommands[j - 1].endY, this.newCenterX, this.newCenterY); // this is the start angle
 		
@@ -59,5 +84,6 @@ class arc {
 		
 		ctx.stroke();
 		ctx.closePath();
+		//console.log(this.endX + "   " + this.endY);
 	}
 }

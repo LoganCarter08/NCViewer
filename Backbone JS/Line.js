@@ -8,6 +8,14 @@ class line {
 	}
 	
 	action(j) {
+		if (isNaN(this.endX)){
+			this.endX = listOfCommands[j - 1].endX;
+		}
+		
+		if (isNaN(this.endY)){
+			this.endY = listOfCommands[j - 1].endY;
+		}
+		
 		ctx.beginPath();
 		ctx.setLineDash([]);
 		ctx.strokeStyle = this.color;

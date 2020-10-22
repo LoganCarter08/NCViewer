@@ -21,6 +21,7 @@
 <script src="BackBone JS/Rapid.js"></script>
 <script src="BackBone JS/GlobalSettings.js"></script>
 <script src="BackBone JS/Origin.js"></script>
+<script src="BackBone JS/SplitString.js"></script>
 <script src="BackBone JS/Punch Tools/PunchToolCreator.js"></script>
 <script src="BackBone JS/Punch Tools/PunchRectangle.js"></script>
 <script src="BackBone JS/Punch Tools/PunchCircle.js"></script>
@@ -28,6 +29,11 @@
 
 <body> 
 	<input type="file" name="inputfile" id="inputfile"> 
+	<label for="machines">Choose a machine:</label>
+	<select onchange="runParser()" name="machines" id="machines">
+		<option value="amada">Amada</option>
+		<option value="flow">Flow</option>
+	</select>
 	<br> 
 	
 	<textarea onchange="runParser()" id="myTextarea" rows="50" cols="40" onkeyup="getLineNumberAndColumnIndex(this);" onmouseup="this.onkeyup();"></textarea>
@@ -46,7 +52,7 @@
 		var c = document.getElementById("myCanvas");
 		var ctx = c.getContext("2d");
 		//ctx.translate(0, myCanvas.height);
-		ctx.translate(50, myCanvas.height - 50);
+		ctx.translate(0, myCanvas.height);
 		ctx.scale(1, -1);
 		var orig = new origin();
 		
@@ -89,7 +95,18 @@
 			
 			listOfCommands.push(orig);
 			for (var i = 0; i < NCFile.length; i++) {
-				AmadaParser(i, NCFile[i]);
+				
+				
+				
+				switch(document.getElementById("ddlViewBy").value) {
+					case "amada":
+						AmadaParser(i, NCFile[i]);
+					case y:
+						// code block
+						break;
+					default:
+						AmadaParser(i, NCFile[i]);
+				}
 			}
 			
 			for (var i = 0; i < listOfCommands.length; i++) {
