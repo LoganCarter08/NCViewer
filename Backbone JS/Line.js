@@ -15,7 +15,6 @@ class line {
 		if (isNaN(this.endY)){
 			this.endY = listOfCommands[j - 1].endY;
 		}
-		
 		ctx.beginPath();
 		ctx.setLineDash([]);
 		ctx.strokeStyle = this.color;

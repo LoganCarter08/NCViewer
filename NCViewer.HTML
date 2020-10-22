@@ -16,6 +16,7 @@
 
 
 <script src="Parsers/AmadaParser.js"></script>
+<script src="Parsers/FlowParser.js"></script>
 <script src="BackBone JS/Arc.js"></script>
 <script src="BackBone JS/Line.js"></script>
 <script src="BackBone JS/Rapid.js"></script>
@@ -92,17 +93,15 @@
 			ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 			var NCFile = document.getElementById("myTextarea").value.split("\n");
 			listOfCommands = [];
-			
+			currentColor = "black";
 			listOfCommands.push(orig);
 			for (var i = 0; i < NCFile.length; i++) {
-				
-				
-				
-				switch(document.getElementById("ddlViewBy").value) {
+				switch(document.getElementById("machines").value) {
 					case "amada":
 						AmadaParser(i, NCFile[i]);
-					case y:
-						// code block
+						break;
+					case "flow":
+						FlowParser(i, NCFile[i], NCFile);
 						break;
 					default:
 						AmadaParser(i, NCFile[i]);

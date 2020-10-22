@@ -63,7 +63,12 @@ class arc {
 			// listOfCommands[j - 1].endX * scale, listOfCommands[j - 1].endY * scale
 			this.newCenterX = listOfCommands[j - 1].endX + this.centerX;
 			this.newCenterY = listOfCommands[j - 1].endY + this.centerY;
+		} else {
+			this.newCenterX = this.centerX;
+			this.newCenterY = this.centerY;
 		}
+		
+		//console.log(this.newCenterX + "   " + this.newCenterY);
 		
 		var endAngle = this.getAngle(this.endX, this.endY, this.newCenterX, this.newCenterY); // this is the end angle
 		var startAngle = this.getAngle(listOfCommands[j - 1].endX,  listOfCommands[j - 1].endY, this.newCenterX, this.newCenterY); // this is the start angle

@@ -1,7 +1,6 @@
 function AmadaParser(j, input) {
 	origin = 0;
 	arcCenter = 1;
-	
 	//console.log(NCFile[1]);
 	var myCommand; // command we will be adding to the list of movements
 	var mySplitInput = splitString(input,"XYIJ");
@@ -34,7 +33,7 @@ function AmadaParser(j, input) {
 			toolNum = parseFloat(input.split("T")[1]);
 		}
 		
-		if (input.includes("C") {
+		if (input.includes("C")) {
 			punchToolAngle = parseFloat(input.split("C")[1]);
 		}
 		var tempStr = input.split(/X|Y|T/);
