@@ -10,11 +10,14 @@ function FlowParser(j, input, code) {
 	}
 	var nextLine = code[j + 1].split(",");
 	
-	//if (thisLine[6] == "1") {
-	//	currentColor = "red";
-	//} else {
-	//	currentColor = "blue";
-	//}
+	// -1, 2, -2
+	if (thisLine[6] == 2) {
+		currentColor = "red";
+	} else if (thisLine[6] == -2) {
+		currentColor = "blue";
+	} else {
+		currentColor = "green";
+	}
 	
 	if (listOfCommands[listOfCommands.length - 1].className == "origin" && thisLine.length > 2) {
 		listOfCommands.push(new rapid(j, 1, parseFloat(thisLine[0]), parseFloat(thisLine[1])));
