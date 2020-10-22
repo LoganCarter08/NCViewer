@@ -5,7 +5,7 @@ var punchRad = -1;
 var punchRad = -1;
 var lastType = -1;
 
-function createPunchTool(newTool, line, num, colors, centX, centY) {
+function createPunchTool(newTool, line, num, colors, centX, centY, ang) {
 	if (newTool) {
 		lastType = parseFloat(prompt("What tool type is tool " + num + "? Please enter 0 for rectangle/square or 1 for circle.", ""));
 		lastNum = num;
@@ -17,7 +17,7 @@ function createPunchTool(newTool, line, num, colors, centX, centY) {
 		}
 	}
 	if (lastType == 0) {
-		return new punchRect(line, lastNum, colors, centX, centY, punchLength, punchWidth);
+		return new punchRect(line, lastNum, colors, centX, centY, punchLength, punchWidth, ang);
 	} else if (lastType != -1) {
 		return new punchCirc(line, lastNum, colors, centX, centY, punchRad / 2);
 	}
