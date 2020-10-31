@@ -25,8 +25,8 @@ class rapid {
 		} else {
 			ctx.setLineDash([3, 5]);
 		}
-		ctx.moveTo(listOfCommands[j - 1].endX * scale, listOfCommands[j - 1].endY * scale);
-		ctx.lineTo(this.endX * scale, this.endY * scale);
+		ctx.moveTo(listOfCommands[j - 1].endX * (scale / unitScale), listOfCommands[j - 1].endY * (scale / unitScale));
+		ctx.lineTo(this.endX * (scale / unitScale), this.endY * (scale / unitScale));
 		ctx.stroke();
 		ctx.closePath();
 		//ctx.restore();

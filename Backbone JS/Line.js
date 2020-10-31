@@ -1,8 +1,8 @@
 class line {
-	constructor(line, colors, endingX, endingY) {
+	constructor(line, endingX, endingY) {
 		this.className = "line";
 		this.lineNum = line;
-		this.color = colors;
+		this.color = getColor();
 		this.endX = endingX;
 		this.endY = endingY;
 	}
@@ -18,8 +18,8 @@ class line {
 		ctx.beginPath();
 		ctx.setLineDash([]);
 		ctx.strokeStyle = this.color;
-		ctx.moveTo(listOfCommands[j - 1].endX * scale, listOfCommands[j - 1].endY * scale);
-		ctx.lineTo(this.endX * scale, this.endY * scale);
+		ctx.moveTo(listOfCommands[j - 1].endX * (scale / unitScale), listOfCommands[j - 1].endY * (scale / unitScale));
+		ctx.lineTo(this.endX * (scale / unitScale), this.endY * (scale / unitScale));
 		ctx.stroke();
 		ctx.closePath();
 		//console.log(this.endX + "   " + this.endY);

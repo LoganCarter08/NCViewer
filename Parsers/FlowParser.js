@@ -1,6 +1,6 @@
 function FlowParser(j, input, code) {
 	origin = 0;
-	this.arcCenter = 0;
+	setArcCenterAbs();
 	
 	//console.log(NCFile[1]);
 	var myCommand = undefined; // command we will be adding to the list of movements
@@ -12,11 +12,11 @@ function FlowParser(j, input, code) {
 	
 	// -1, 2, -2
 	if (thisLine[6] == 2) {
-		currentColor = "red";
+		setColor("red");
 	} else if (thisLine[6] == -2) {
-		currentColor = "blue";
+		setColor("blue");
 	} else {
-		currentColor = "green";
+		setColor("green");
 	}
 	
 	if (listOfCommands[listOfCommands.length - 1].className == "origin" && thisLine.length > 2) {
@@ -31,18 +31,16 @@ function FlowParser(j, input, code) {
 	} else if (thisLine[3] == 0) {
 		// x , y, z, g, f, kerf, in/out
 		// line 
-		myCommand = new line(j, currentColor, parseFloat(nextLine[0]), parseFloat(nextLine[1]));
+		myCommand = new line(j, parseFloat(nextLine[0]), parseFloat(nextLine[1]));
 	} else if (thisLine[3] == 1) {
 		// X, Y, Z, G, F, Kerf, in/out, I, J, K
 		// CW arc 
-		myCommand = new arc(j, currentColor, 0, parseFloat(nextLine[0]), parseFloat(nextLine[1]), parseFloat(thisLine[7]), parseFloat(thisLine[8]));
+		myCommand = new arc(j, 0, parseFloat(nextLine[0]), parseFloat(nextLine[1]), parseFloat(thisLine[7]), parseFloat(thisLine[8]));
 	} else if (thisLine[3] == -1) {
 		// X, Y, Z, G, F, Kerf, in/out, I, J, K
 		// CCW arc 
-		myCommand = new arc(j, currentColor, 1, parseFloat(nextLine[0]), parseFloat(nextLine[1]), parseFloat(thisLine[7]), parseFloat(thisLine[8]));
+		myCommand = new arc(j, 1, parseFloat(nextLine[0]), parseFloat(nextLine[1]), parseFloat(thisLine[7]), parseFloat(thisLine[8]));
 	}
 	
-	if (typeof(myCommand) != "undefined") {
-		listOfCommands.push(myCommand);
-	}
+	return myCommand;
 }

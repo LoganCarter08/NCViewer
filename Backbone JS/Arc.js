@@ -1,7 +1,7 @@
 class arc {
-	constructor(line, colors, direction, endingX, endingY, centeringX, centeringY) {
+	constructor(line, direction, endingX, endingY, centeringX, centeringY) {
 		this.className = "arc";
-		this.color = colors;
+		this.color = getColor();
 		this.lineNum = line;
 		if (direction == 1) {
 			this.dir = false;//true; // 0 for CW, 1 for CCW
@@ -83,9 +83,9 @@ class arc {
 		ctx.beginPath();
 		ctx.setLineDash([]);
 		ctx.strokeStyle = this.color;
-		ctx.moveTo(listOfCommands[j - 1].endX * scale, listOfCommands[j - 1].endY * scale);
+		ctx.moveTo(listOfCommands[j - 1].endX * (scale / unitScale), listOfCommands[j - 1].endY * (scale / unitScale));
 		
-		ctx.arc(this.newCenterX * scale, this.newCenterY * scale, rad * scale, startAngle, endAngle, this.dir);
+		ctx.arc(this.newCenterX * (scale / unitScale), this.newCenterY * (scale / unitScale), rad * (scale / unitScale), startAngle, endAngle, this.dir);
 		
 		ctx.stroke();
 		ctx.closePath();

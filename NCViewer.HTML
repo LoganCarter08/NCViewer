@@ -94,17 +94,22 @@
 			var NCFile = document.getElementById("myTextarea").value.split("\n");
 			listOfCommands = [];
 			currentColor = "black";
+			setImperial();
 			listOfCommands.push(orig);
 			for (var i = 0; i < NCFile.length; i++) {
 				switch(document.getElementById("machines").value) {
 					case "amada":
-						AmadaParser(i, NCFile[i]);
+						var myCommand = AmadaParser(i, NCFile[i]);
 						break;
 					case "flow":
-						FlowParser(i, NCFile[i], NCFile);
+						var myCommand = FlowParser(i, NCFile[i], NCFile);
 						break;
 					default:
-						AmadaParser(i, NCFile[i]);
+						var myCommand = AmadaParser(i, NCFile[i]);
+				}
+				
+				if (typeof(myCommand) != "undefined") {
+					listOfCommands.push(myCommand);
 				}
 			}
 			
