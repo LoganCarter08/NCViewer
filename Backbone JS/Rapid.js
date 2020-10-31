@@ -1,7 +1,7 @@
 class rapid {
-	constructor(line, typeOf, endingX, endingY) {
+	constructor(typeOf, endingX, endingY) {
 		this.className = "rapid";
-		this.lineNum = line;
+		this.lineNum = getCurrentLineNum();
 		this.type = typeOf; // 1 is head up and 0 is head down
 		this.endX = endingX;
 		this.endY = endingY;

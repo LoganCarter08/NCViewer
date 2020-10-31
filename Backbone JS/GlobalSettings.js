@@ -4,6 +4,7 @@ var currentColor = "black"; // color to set the line. black by default.
 var arcCenter = 1; // 1 for incremental, 0 for absolute
 var punchToolAngle = 0; // this really shouldn't be here. Why'd I do that?
 var unitScale = 1;
+var curLine = 0;
 
 function setImperial() {
 	unitScale = 1;
@@ -26,5 +27,13 @@ function setColor(col) {
 }
 
 function getColor() {
-	return currentColor;
+	return this.currentColor;
+}
+
+function setCurrentLineNum(i) {
+	this.curLine = i;
+}
+
+function getCurrentLineNum() {
+	return this.curLine;
 }

@@ -1,7 +1,7 @@
 class line {
-	constructor(line, endingX, endingY) {
+	constructor(endingX, endingY) {
 		this.className = "line";
-		this.lineNum = line;
+		this.lineNum = getCurrentLineNum();
 		this.color = getColor();
 		this.endX = endingX;
 		this.endY = endingY;

@@ -1,4 +1,4 @@
-function AmadaParser(j, input) {
+function AmadaParser(input) {
 	origin = 0;
 	setArcCenterInc();
 	
@@ -20,15 +20,15 @@ function AmadaParser(j, input) {
 	} else if (input.includes("E10")) {
 		setColor("blue");
 	} else if (input.includes("G01")) {
-		myCommand = new line(j, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]));
+		myCommand = new line(parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]));
 	} else if (input.includes("G00") && input != "G00G40") {
-		myCommand = new rapid(j, 1, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]));
+		myCommand = new rapid(1, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]));
 	} else if ((input.includes("G03") || input.includes("G02")) && !input.includes("R")) { // I hate that I did this. Clean it up later you worthless human
 		// 						line, direction, endingX, endingY, centeringX, centeringY)
 		if (input.includes("G02")) {
-			myCommand = new arc(j, 0, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]), parseFloat(mySplitInput[2]), parseFloat(mySplitInput[3]));
+			myCommand = new arc(0, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]), parseFloat(mySplitInput[2]), parseFloat(mySplitInput[3]));
 		} else {
-			myCommand = new arc(j, 1, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]), parseFloat(mySplitInput[2]), parseFloat(mySplitInput[3]));
+			myCommand = new arc(1, parseFloat(mySplitInput[0]), parseFloat(mySplitInput[1]), parseFloat(mySplitInput[2]), parseFloat(mySplitInput[3]));
 		}
 	} else if (input.includes("X") && input.includes("Y")) {
 		var createTool = false;
@@ -42,7 +42,7 @@ function AmadaParser(j, input) {
 			punchToolAngle = parseFloat(input.split("C")[1]);
 		}
 		var tempStr = input.split(/X|Y|T/);
-		myCommand = createPunchTool(createTool, j, toolNum, "brown", tempStr[1], tempStr[2], punchToolAngle);
+		myCommand = createPunchTool(createTool, toolNum, "brown", tempStr[1], tempStr[2], punchToolAngle);
 	}
 	
 	//if (typeof(myCommand) != "undefined") {

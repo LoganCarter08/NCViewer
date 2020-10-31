@@ -1,7 +1,7 @@
 class punchRect {
-	constructor(line, ident, colors, centX, centY, len, wid) {
+	constructor(ident, colors, centX, centY, len, wid) {
 		this.className = "punchRect";
-		this.lineNum = line;
+		this.lineNum = getCurrentLineNum();
 		this.color = colors;
 		this.endX = centX - (len / 2);
 		this.endY = centY - (wid / 2);

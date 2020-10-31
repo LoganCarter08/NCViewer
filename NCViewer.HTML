@@ -97,15 +97,16 @@
 			setImperial();
 			listOfCommands.push(orig);
 			for (var i = 0; i < NCFile.length; i++) {
+				setCurrentLineNum(i);
 				switch(document.getElementById("machines").value) {
 					case "amada":
-						var myCommand = AmadaParser(i, NCFile[i]);
+						var myCommand = AmadaParser(NCFile[i]);
 						break;
 					case "flow":
-						var myCommand = FlowParser(i, NCFile[i], NCFile);
+						var myCommand = FlowParser(NCFile[i], NCFile);
 						break;
 					default:
-						var myCommand = AmadaParser(i, NCFile[i]);
+						var myCommand = AmadaParser(NCFile[i]);
 				}
 				
 				if (typeof(myCommand) != "undefined") {

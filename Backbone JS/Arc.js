@@ -1,8 +1,8 @@
 class arc {
-	constructor(line, direction, endingX, endingY, centeringX, centeringY) {
+	constructor(direction, endingX, endingY, centeringX, centeringY) {
 		this.className = "arc";
 		this.color = getColor();
-		this.lineNum = line;
+		this.lineNum = getCurrentLineNum();
 		if (direction == 1) {
 			this.dir = false;//true; // 0 for CW, 1 for CCW
 		} else {

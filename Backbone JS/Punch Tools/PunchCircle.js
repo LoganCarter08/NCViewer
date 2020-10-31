@@ -1,7 +1,7 @@
 class punchCirc {
-	constructor(line, ident, colors, centX, centY, rad) {
+	constructor(ident, colors, centX, centY, rad) {
 		this.className = "punchCirc";
-		this.lineNum = line;
+		this.lineNum = getCurrentLineNum();
 		this.color = colors;
 		this.endX = centX - (rad);
 		this.endY = centY - (rad);
