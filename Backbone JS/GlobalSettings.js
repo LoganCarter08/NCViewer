@@ -5,6 +5,16 @@ var arcCenter = 1; // 1 for incremental, 0 for absolute
 var punchToolAngle = 0; // this really shouldn't be here. Why'd I do that?
 var unitScale = 1;
 var curLine = 0;
+var subProgramCallList = [];
+var inSub = false;
+
+function startSub() {
+	this.inSub = true;
+}
+
+function endSub() {
+	this.inSub = false;
+}
 
 function setImperial() {
 	unitScale = 1;
